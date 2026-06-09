@@ -1,0 +1,1031 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AMI_RMK13 | فروشگاه بزرگ پوشاک مدرن</title>
+    <!-- اتصال به آیکون‌های فونت‌آوسم -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap");
+
+      :root {
+        --primary: #1a1a1a;
+        --accent: #b89262;
+        --bg-light: #f7f7f7;
+        --text-dark: #2c2c2c;
+        --text-muted: #777777;
+        --white: #ffffff;
+        --danger: #d9534f;
+        --success: #2ecc71;
+        --shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Vazirmatn", sans-serif;
+        transition: all 0.2s ease-in-out;
+      }
+
+      body {
+        background-color: #fafafa;
+        color: var(--text-dark);
+        overflow-x: hidden;
+      }
+
+      /* نوار اعلان بالای سایت */
+      .top-bar {
+        background-color: var(--primary);
+        color: var(--white);
+        text-align: center;
+        padding: 8px 10px;
+        font-size: 13px;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+      }
+
+      /* هدر و ناوبری */
+      header {
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        position: sticky;
+        top: 0;
+        z-index: 999;
+      }
+
+      .navbar {
+        max-width: 1300px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+      }
+
+      .nav-right,
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+
+      .logo {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .logo span {
+        color: var(--accent);
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 500;
+        font-size: 15px;
+      }
+
+      .nav-menu a:hover,
+      .nav-menu a.active {
+        color: var(--accent);
+      }
+
+      .nav-icons {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 19px;
+        cursor: pointer;
+      }
+
+      .cart-icon-container {
+        position: relative;
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        background-color: var(--accent);
+        color: var(--white);
+        font-size: 11px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+
+      /* بنر اصلی و کاور بالای سایت */
+      .hero-banner {
+        position: relative;
+        height: 500px;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.65) 0%,
+            rgba(0, 0, 0, 0.3) 100%
+          ),
+          url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=80")
+            center center/cover;
+        display: flex;
+        align-items: center;
+        color: var(--white);
+        padding: 0 10%;
+      }
+
+      .hero-content {
+        max-width: 600px;
+      }
+
+      .hero-content h1 {
+        font-size: 45px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        line-height: 1.4;
+      }
+
+      .hero-content p {
+        font-size: 17px;
+        margin-bottom: 30px;
+        color: #e0e0e0;
+        font-weight: 300;
+      }
+
+      .cta-btn {
+        background-color: var(--accent);
+        color: var(--white);
+        padding: 12px 35px;
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 4px;
+        box-shadow: 0 4px 10px rgba(184, 146, 98, 0.3);
+      }
+
+      .cta-btn:hover {
+        background-color: #a37f53;
+        transform: translateY(-2px);
+      }
+
+      /* ساختار اصلی بدنه فروشگاه */
+      .store-layout {
+        max-width: 1300px;
+        margin: 50px auto;
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 40px;
+        padding: 0 20px;
+      }
+
+      /* سایدبار فیلترها */
+      .sidebar {
+        background-color: var(--white);
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        align-self: start;
+      }
+
+      .filter-section {
+        margin-bottom: 30px;
+      }
+
+      .filter-section h4 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--bg-light);
+      }
+
+      .filter-list {
+        list-style: none;
+      }
+
+      .filter-list li {
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: var(--text-muted);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .filter-list li:hover,
+      .filter-list li.active {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      /* بخش نمایش محصولات */
+      .products-container h2 {
+        font-size: 24px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+      }
+
+      /* کارت محصول */
+      .product-card {
+        background-color: var(--white);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .img-wrapper {
+        position: relative;
+        height: 360px;
+        overflow: hidden;
+        background-color: #f0f0f0;
+      }
+
+      .product-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .product-card:hover .product-img {
+        transform: scale(1.04);
+      }
+
+      .product-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: var(--accent);
+        color: var(--white);
+        padding: 3px 10px;
+        font-size: 12px;
+        border-radius: 3px;
+        font-weight: bold;
+      }
+
+      .card-details {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      .card-title {
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .card-desc {
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-bottom: 15px;
+        height: 40px;
+        overflow: hidden;
+        line-height: 1.5;
+      }
+
+      .card-spec {
+        margin-bottom: 15px;
+        font-size: 13px;
+      }
+
+      .spec-item {
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .color-preview {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        display: inline-block;
+      }
+
+      .size-preview {
+        background-color: var(--bg-light);
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-size: 11px;
+        font-weight: bold;
+      }
+
+      .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+        border-top: 1px solid #f0f0f0;
+        padding-top: 15px;
+      }
+
+      .price {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .add-to-cart-btn {
+        background-color: var(--primary);
+        color: var(--white);
+        border: none;
+        padding: 8px 14px;
+        border-radius: 4px;
+        font-size: 13px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .add-to-cart-btn:hover {
+        background-color: var(--accent);
+      }
+
+      /* پنجره کشویی سبد خرید داینامیک */
+      .cart-modal {
+        position: fixed;
+        top: 0;
+        left: -400px;
+        width: 380px;
+        height: 100%;
+        background-color: var(--white);
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        transition: left 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
+      }
+
+      .cart-modal.open {
+        left: 0;
+      }
+
+      .cart-header {
+        padding: 20px;
+        background-color: var(--primary);
+        color: var(--white);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .cart-header h3 {
+        font-size: 18px;
+      }
+
+      .close-cart {
+        font-size: 22px;
+        cursor: pointer;
+      }
+
+      .cart-body {
+        padding: 20px;
+        overflow-y: auto;
+        flex-grow: 1;
+      }
+
+      .empty-cart-text {
+        text-align: center;
+        color: var(--text-muted);
+        margin-top: 50px;
+        font-size: 15px;
+      }
+
+      .cart-item {
+        display: flex;
+        gap: 15px;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        align-items: center;
+      }
+
+      .cart-item-img {
+        width: 70px;
+        height: 85px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+
+      .cart-item-info {
+        flex-grow: 1;
+      }
+
+      .cart-item-title {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+
+      .cart-item-price {
+        font-size: 13px;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .remove-item {
+        color: var(--danger);
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .cart-footer {
+        padding: 20px;
+        border-top: 1px solid #eee;
+        background-color: #fafafa;
+      }
+
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .checkout-btn {
+        width: 100%;
+        background-color: var(--accent);
+        color: var(--white);
+        border: none;
+        padding: 12px;
+        font-size: 15px;
+        font-weight: 700;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .checkout-btn:hover {
+        background-color: #a37f53;
+      }
+
+      .cart-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 998;
+        display: none;
+      }
+
+      .cart-overlay.show {
+        display: block;
+      }
+
+      /* فوتر سایت */
+      footer {
+        background-color: var(--primary);
+        color: var(--white);
+        padding: 60px 20px 20px 20px;
+        margin-top: 100px;
+      }
+
+      .footer-grid {
+        max-width: 1300px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        border-bottom: 1px solid #333;
+        padding-bottom: 40px;
+      }
+
+      .footer-col h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: var(--white);
+      }
+
+      .footer-col h3 span {
+        color: var(--accent);
+      }
+
+      .footer-col p {
+        font-size: 14px;
+        color: #aaa;
+        line-height: 1.8;
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+
+      .footer-col ul li {
+        margin-bottom: 12px;
+      }
+
+      .footer-col ul li a {
+        color: #aaa;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .footer-col ul li a:hover {
+        color: var(--accent);
+        padding-right: 5px;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 20px;
+        font-size: 13px;
+        color: #777;
+      }
+
+      /* ریسپانسیو و بهینه‌سازی موبایل */
+      @media (max-width: 992px) {
+        .store-layout {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          display: none;
+        }
+        .hero-banner {
+          height: 380px;
+          padding: 0 5%;
+        }
+        .hero-content h1 {
+          font-size: 32px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- نوار تاپ‌بار -->
+    <div class="top-bar">
+      ✨ ارسال رایگان برای خریدهای بالای ۱ میلیون تومان | کد تخفیف خرید اول:
+      WELCOME_AMI ✨
+    </div>
+
+    <!-- هدر سایت -->
+    <header>
+      <div class="navbar">
+        <div class="nav-right">
+          <a href="#" class="logo">AMI_<span>RMK13</span></a>
+          <ul class="nav-menu">
+            <li><a href="#" class="active">صفحه اصلی</a></li>
+            <li><a href="#store">فروشگاه</a></li>
+            <li><a href="#about">درباره ما</a></li>
+          </ul>
+        </div>
+        <div class="nav-left">
+          <div class="nav-icons">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-regular fa-user"></i>
+            <div class="cart-icon-container" onclick="toggleCart(true)">
+              <i class="fa-solid fa-bag-shopping"></i>
+              <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- بنر خوش‌آمدگویی و کاور اصلی -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <h1>استایل منحصربه‌فرد خود را بسازید</h1>
+        <p>
+          مجموعه‌ای لوکس از مدرن‌ترین و باکیفیت‌ترین لباس‌های فصل، برآمده از
+          طراحی‌های اختصاصی و اصیل خانه مد AMI_RMK13.
+        </p>
+        <a href="#store" class="cta-btn"
+          >شروع خرید آنلاین
+          <i class="fa-solid fa-arrow-left" style="margin-right: 8px"></i
+        ></a>
+      </div>
+    </section>
+
+    <!-- ویترین فروشگاه و فیلترها -->
+    <div class="store-layout" id="store">
+      <!-- منوی فیلتر سایدبار -->
+      <aside class="sidebar">
+        <div class="filter-section">
+          <h4>دسته‌بندی‌ها</h4>
+          <ul class="filter-list">
+            <li class="active">
+              <i class="fa-solid fa-angles-left"></i> همه محصولات
+            </li>
+            <li><i class="fa-solid fa-angle-left"></i> کاپشن و پالتو</li>
+            <li><i class="fa-solid fa-angle-left"></i> تیشرت و پولوشرت</li>
+            <li><i class="fa-solid fa-angle-left"></i> هودی و سویشرت</li>
+            <li><i class="fa-solid fa-angle-left"></i> شلوار جین و کژوال</li>
+          </ul>
+        </div>
+
+        <div class="filter-section">
+          <h4>محدوده قیمت</h4>
+          <ul class="filter-list">
+            <li>
+              <input type="radio" name="price" id="p1" />
+              <label for="p1">تا ۵۰۰,۰۰۰ تومان</label>
+            </li>
+            <li>
+              <input type="radio" name="price" id="p2" />
+              <label for="p2">۵۰۰ تا ۱,۵۰۰,۰۰۰ تومان</label>
+            </li>
+            <li>
+              <input type="radio" name="price" id="p3" />
+              <label for="p3">بالای ۱,۵۰۰,۰۰۰ تومان</label>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- گرید شبکه‌ای محصولات -->
+      <main class="products-container">
+        <h2>
+          ویترین محصولات پوشاک
+          <span
+            style="
+              font-size: 14px;
+              color: var(--text-muted);
+              font-weight: normal;
+            "
+            >نمایش آخرین محصولات</span
+          >
+        </h2>
+
+        <div class="products-grid">
+          <!-- محصول اول -->
+          <div class="product-card">
+            <div class="img-wrapper">
+              <img src="./images.jfif" alt="کاپشن" class="product-img" />
+              <span class="product-badge">پرفروش</span>
+            </div>
+            <div class="card-details">
+              <h3 class="card-title">کاپشن چرم کلاسیک زمستانه</h3>
+              <p class="card-desc">
+                تهیه شده از چرم ممتاز ضدآب به همراه لایه آستر پشمی داخلی
+                فوق‌العاده گرم و خوش‌دوخت.
+              </p>
+
+              <div class="card-spec">
+                <div class="spec-item">
+                  <strong>رنگ:</strong>
+                  <span
+                    class="color-preview"
+                    style="background-color: #111"
+                  ></span>
+                  مشکی
+                </div>
+                <div class="spec-item">
+                  <strong>سایزها:</strong>
+                  <span class="size-preview">M</span>
+                  <span class="size-preview">L</span>
+                  <span class="size-preview">XL</span>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <span class="price">۳,۴۵۰,۰۰۰ تومان</span>
+                <button
+                  class="add-to-cart-btn"
+                  onclick="
+                    addToCart(
+                      'کاپشن چرم کلاسیک',
+                      3450000,
+                      'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=500&q=80',
+                    )
+                  "
+                >
+                  <i class="fa-solid fa-basket-shopping"></i> خرید
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- محصول دوم -->
+          <div class="product-card">
+            <div class="img-wrapper">
+              <img src="./images (1).jfif" alt="تیشرت" class="product-img" />
+            </div>
+            <div class="card-details">
+              <h3 class="card-title">تیشرت پنبه‌ای مینیمال AMI</h3>
+              <p class="card-desc">
+                ۱۰۰٪ الیاف طبیعی پنبه ارگانیک، بافت لطیف، خنک با ثبات رنگ عالی
+                در برابر شستشوهای متوالی.
+              </p>
+
+              <div class="card-spec">
+                <div class="spec-item">
+                  <strong>رنگ:</strong>
+                  <span
+                    class="color-preview"
+                    style="background-color: #ffffff"
+                  ></span>
+                  سفید
+                </div>
+                <div class="spec-item">
+                  <strong>سایزها:</strong>
+                  <span class="size-preview">S</span>
+                  <span class="size-preview">M</span>
+                  <span class="size-preview">L</span>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <span class="price">۴۹۰,۰۰۰ تومان</span>
+                <button
+                  class="add-to-cart-btn"
+                  onclick="
+                    addToCart(
+                      'تیشرت پنبه‌ای مینیمال',
+                      490000,
+                      'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=500&q=80',
+                    )
+                  "
+                >
+                  <i class="fa-solid fa-basket-shopping"></i> خرید
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- محصول سوم -->
+          <div class="product-card">
+            <div class="img-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80"
+                alt="شلوار جین"
+                class="product-img"
+              />
+              <span class="product-badge">جدید</span>
+            </div>
+            <div class="card-details">
+              <h3 class="card-title">شلوار جین کلاسیک بلو-بلک</h3>
+              <p class="card-desc">
+                پارچه جین ترک ضخیم با کیفیت بالا و کپ فوق‌العاده شیک تن‌خور عالی
+                متناسب با استایل خیابانی.
+              </p>
+
+              <div class="card-spec">
+                <div class="spec-item">
+                  <strong>رنگ:</strong>
+                  <span
+                    class="color-preview"
+                    style="background-color: #1a2a3a"
+                  ></span>
+                  سرمه‌ای تیره
+                </div>
+                <div class="spec-item">
+                  <strong>سایزها:</strong>
+                  <span class="size-preview">32</span>
+                  <span class="size-preview">34</span>
+                  <span class="size-preview">36</span>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <span class="price">۱,۲۵۰,۰۰۰ تومان</span>
+                <button
+                  class="add-to-cart-btn"
+                  onclick="
+                    addToCart(
+                      'شلوار جین کلاسیک',
+                      1250000,
+                      'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80',
+                    )
+                  "
+                >
+                  <i class="fa-solid fa-basket-shopping"></i> خرید
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- محصول چهارم -->
+          <div class="product-card">
+            <div class="img-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=500&q=80"
+                alt="هودی"
+                class="product-img"
+              />
+            </div>
+            <div class="card-details">
+              <h3 class="card-title">هودی پاییزه اورسایز</h3>
+              <p class="card-desc">
+                پارچه دورس سه نخ داخل کرک‌دار ضخیم، ایده‌آل و قواره آزاد برای
+                استایل پاییزه و زمستانه جوانان.
+              </p>
+
+              <div class="card-spec">
+                <div class="spec-item">
+                  <strong>رنگ:</strong>
+                  <span
+                    class="color-preview"
+                    style="background-color: #d2b48c"
+                  ></span>
+                  کرم شتری
+                </div>
+                <div class="spec-item">
+                  <strong>سایزها:</strong>
+                  <span class="size-preview">L</span>
+                  <span class="size-preview">XL</span>
+                  <span class="size-preview">XXL</span>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <span class="price">۱,۶۸۰,۰۰۰ تومان</span>
+                <button
+                  class="add-to-cart-btn"
+                  onclick="
+                    addToCart(
+                      'هودی پاییزه اورسایز',
+                      1680000,
+                      'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=500&q=80',
+                    )
+                  "
+                >
+                  <i class="fa-solid fa-basket-shopping"></i> خرید
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- المان‌های سبد خرید کشویی -->
+    <div
+      class="cart-overlay"
+      id="cartOverlay"
+      onclick="toggleCart(false)"
+    ></div>
+    <div class="cart-modal" id="cartModal">
+      <div class="cart-header">
+        <h3><i class="fa-solid fa-bag-shopping"></i> سبد خرید شما</h3>
+        <span class="close-cart" onclick="toggleCart(false)">&times;</span>
+      </div>
+      <div class="cart-body" id="cartBody">
+        <p class="empty-cart-text">سبد خرید شما در حال حاضر خالی است.</p>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>جمع کل خرید:</span>
+          <span id="cartTotalSum">۰ تومان</span>
+        </div>
+        <button class="checkout-btn" onclick="checkoutAlert()">
+          تکمیل و ثبت سفارش
+        </button>
+      </div>
+    </div>
+
+    <!-- فوتر بزرگ سایت -->
+    <footer id="about">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>درباره خانه مد <span>AMI_RMK13</span></h3>
+          <p>
+            برند AMI_RMK13 با هدف ارائه محصولاتی متمایز با طراحی مدرن و کیفیت
+            پارچه تضمین‌شده بنا نهاده شده است. ما اصالت و راحتی شما را در اولویت
+            قرار می‌دهیم.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>دسترسی سریع</h3>
+          <ul>
+            <li><a href="#">جدول سایزبندی محصولات</a></li>
+            <li><a href="#">شرایط و قوانین تعویض کالا</a></li>
+            <li><a href="#">پیگیری سفارشات پستی</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>ارتباط با ما</h3>
+          <p>
+            <i
+              class="fa-solid fa-location-dot"
+              style="color: var(--accent); margin-left: 8px"
+            ></i>
+            تهران، برج خانه مد AMI
+          </p>
+          <p style="margin-top: 10px">
+            <i
+              class="fa-solid fa-phone"
+              style="color: var(--accent); margin-left: 8px"
+            ></i>
+            پشتیبانی: ۰۲۱-۸۸۸۸۸۸۸۸
+          </p>
+        </div>
+      </div>
+      <div class="copyright">
+        تمامی حقوق مادی و معنوی این وب‌سایت متعلق به فروشگاه AMI_RMK13 می‌باشد.
+        © ۲۰۲۶
+      </div>
+    </footer>
+
+    <!-- کدهای جاوااسکریپت برای مدیریت سبد خرید تعاملی -->
+    <script>
+      let cart = [];
+
+      function toggleCart(open) {
+        const modal = document.getElementById("cartModal");
+        const overlay = document.getElementById("cartOverlay");
+        if (open) {
+          modal.classList.add("open");
+          overlay.classList.add("show");
+        } else {
+          modal.classList.remove("open");
+          overlay.classList.remove("show");
+        }
+      }
+
+      function addToCart(title, price, img) {
+        cart.push({ title, price, img });
+        updateCartUI();
+        toggleCart(true); // باز شدن خودکار سبد خرید پس از کلیک روی دکمه خرید
+      }
+
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+      }
+
+      function updateCartUI() {
+        document.getElementById("cartBadge").innerText = cart.length;
+        const cartBody = document.getElementById("cartBody");
+        const totalSumElement = document.getElementById("cartTotalSum");
+
+        if (cart.length === 0) {
+          cartBody.innerHTML =
+            '<p class="empty-cart-text">سبد خرید شما در حال حاضر خالی است.</p>';
+          totalSumElement.innerText = "۰ تومان";
+          return;
+        }
+
+        let html = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+          total += item.price;
+          html += `
+                    <div class="cart-item">
+                        <img src="${item.img}" class="cart-item-img" alt="${item.title}">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.title}</div>
+                            <div class="cart-item-price">${item.price.toLocaleString("fa-IR")} تومان</div>
+                        </div>
+                        <div class="remove-item" onclick="removeFromCart(${index})">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </div>
+                    </div>
+                `;
+        });
+
+        cartBody.innerHTML = html;
+        totalSumElement.innerText = total.toLocaleString("fa-IR") + " تومان";
+      }
+
+      function checkoutAlert() {
+        if (cart.length === 0) {
+          alert("سبد خرید شما خالی است!");
+        } else {
+          alert("سفارش شما با موفقیت در سیستم فروشگاهی AMI_RMK13 ثبت شد!");
+          cart = [];
+          updateCartUI();
+          toggleCart(false);
+        }
+      }
+    </script>
+  </body>
+</html>
