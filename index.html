@@ -1,0 +1,1013 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AMI_RMK13 | سیستم هوشمند استایلینگ و فروشگاه</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;400;600;800&display=swap");
+
+      :root {
+        --primary: #0f1115;
+        --accent: #c5a880;
+        --accent-dark: #a3855c;
+        --bg-body: #f8f9fa;
+        --bg-card: #ffffff;
+        --text-main: #1e2229;
+        --text-muted: #6c757d;
+        --success: #00b894;
+        --radius-lg: 20px;
+        --radius-md: 12px;
+        --transition: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Vazirmatn", sans-serif;
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        overflow-x: hidden;
+      }
+
+      /* هدر شیشه‌ای */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 1000;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .navbar {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 25px;
+      }
+      .logo {
+        font-size: 28px;
+        font-weight: 800;
+        text-decoration: none;
+        color: var(--primary);
+      }
+      .logo span {
+        color: var(--accent);
+      }
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 35px;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-main);
+        font-weight: 600;
+        position: relative;
+        padding: 5px 0;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent);
+        transition: width 0.3s var(--transition);
+      }
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+        left: 0;
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+      .action-icon {
+        font-size: 20px;
+        cursor: pointer;
+        position: relative;
+        color: var(--text-main);
+      }
+      .badge {
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        background: var(--primary);
+        color: #fff;
+        font-size: 11px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #fff;
+      }
+      .menu-toggle {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      /* بخش هیرو */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        background: #0b0c10;
+        overflow: hidden;
+        padding: 0 8%;
+      }
+      .hero-video-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.35;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        max-width: 650px;
+        color: #fff;
+      }
+      .hero h1 {
+        font-size: 56px;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 25px;
+      }
+      .hero p {
+        font-size: 18px;
+        color: #ccc;
+        margin-bottom: 40px;
+        line-height: 1.8;
+      }
+      .btn-premium {
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        background: linear-gradient(
+          135deg,
+          var(--accent) 0%,
+          var(--accent-dark) 100%
+        );
+        color: #fff;
+        padding: 16px 40px;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 50px;
+        box-shadow: 0 10px 30px rgba(197, 168, 128, 0.3);
+        border: none;
+        cursor: pointer;
+      }
+
+      /* کاتالوگ فروشگاه */
+      .catalog-container {
+        max-width: 1400px;
+        margin: 80px auto 100px auto;
+        padding: 0 25px;
+      }
+      .section-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .section-header h2 {
+        font-size: 36px;
+        font-weight: 800;
+      }
+      .filter-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+      .tab-btn {
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 10px 25px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .tab-btn.active,
+      .tab-btn:hover {
+        background: var(--primary);
+        color: #fff;
+      }
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 35px;
+      }
+
+      /* کارت محصول */
+      .product-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s;
+      }
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+      .img-container {
+        position: relative;
+        height: 380px;
+        overflow: hidden;
+      }
+      .product-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .tag-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: var(--primary);
+        color: #fff;
+        padding: 5px 15px;
+        font-size: 12px;
+        border-radius: 30px;
+      }
+      .wishlist-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 40px;
+        height: 40px;
+        background: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      .details-box {
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+      .item-category {
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+      .item-title {
+        font-size: 19px;
+        font-weight: 800;
+        margin: 5px 0 10px 0;
+      }
+      .item-desc {
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .selectors {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-top: 15px;
+        border-top: 1px dashed rgba(0, 0, 0, 0.08);
+      }
+      .color-dots {
+        display: flex;
+        gap: 8px;
+      }
+      .dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        box-shadow: 0 0 0 1px #ccc;
+        cursor: pointer;
+      }
+      .dot.selected {
+        box-shadow: 0 0 0 2px var(--accent);
+      }
+      .size-tags {
+        display: flex;
+        gap: 6px;
+      }
+      .size-tag {
+        font-size: 12px;
+        background: #f1f2f6;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .size-tag.selected {
+        background: var(--accent);
+        color: #fff;
+      }
+      .price-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+      }
+      .price-amount {
+        font-size: 20px;
+        font-weight: 800;
+      }
+      .add-cart-action {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* سایدبار سبد خرید */
+      .cart-sidebar {
+        position: fixed;
+        top: 0;
+        left: -450px;
+        width: 420px;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        box-shadow: 5px 0 40px rgba(0, 0, 0, 0.1);
+        z-index: 2000;
+        display: flex;
+        flex-direction: column;
+        transition: left 0.4s var(--transition);
+      }
+      .cart-sidebar.active {
+        left: 0;
+      }
+      .cart-top {
+        padding: 30px;
+        background: var(--primary);
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .close-sidebar {
+        font-size: 26px;
+        cursor: pointer;
+      }
+      .cart-items-wrapper {
+        padding: 30px;
+        overflow-y: auto;
+        flex-grow: 1;
+      }
+      .cart-item-node {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .node-img {
+        width: 70px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: var(--radius-md);
+      }
+      .node-info {
+        flex-grow: 1;
+      }
+      .node-meta {
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+      .node-price {
+        color: var(--accent);
+        font-weight: 800;
+        margin-top: 5px;
+      }
+      .cart-bottom {
+        padding: 30px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        background: #fff;
+      }
+      .total-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 25px;
+      }
+      .overlay-mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1500;
+        display: none;
+      }
+      .overlay-mask.active {
+        display: block;
+      }
+
+      /* 🤖 چت‌بات فوق پیشرفته هوشمند استایلینگ */
+      .chatbot-container {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 3000;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+      .chatbot-toggle-btn {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s;
+      }
+      .chatbot-toggle-btn:hover {
+        transform: scale(1.08);
+      }
+      .chat-window {
+        width: 380px;
+        height: 520px;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(15px);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        display: none;
+      }
+      .chat-window.active {
+        display: flex;
+        animation: fadeInUp 0.4s var(--transition);
+      }
+      .chat-header {
+        background: var(--primary);
+        color: #fff;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .chat-header img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+      }
+      .chat-header .bot-status {
+        font-size: 12px;
+        color: var(--success);
+        display: block;
+      }
+      .chat-messages {
+        flex-grow: 1;
+        padding: 20px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .msg {
+        max-width: 85%;
+        padding: 10px 14px;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      .msg.bot {
+        background: #eef2f5;
+        color: var(--text-main);
+        border-radius: 15px 15px 0 15px;
+        align-self: flex-start;
+      }
+      .msg.user {
+        background: var(--accent);
+        color: #fff;
+        border-radius: 15px 15px 15px 0;
+        align-self: flex-end;
+      }
+      .chat-footer {
+        padding: 15px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        gap: 10px;
+        background: #fff;
+      }
+      .chat-input {
+        flex-grow: 1;
+        border: 1px solid #e2e8f0;
+        padding: 10px 15px;
+        border-radius: 30px;
+        outline: none;
+        font-size: 14px;
+      }
+      .chat-send-btn {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      /* فوتر */
+      footer {
+        background: var(--primary);
+        color: #fff;
+        padding: 60px 25px 30px 25px;
+        margin-top: 60px;
+      }
+      .footer-grid {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 50px;
+      }
+      .footer-logo {
+        font-size: 32px;
+        font-weight: 800;
+        margin-bottom: 20px;
+      }
+      .footer-logo span {
+        color: var(--accent);
+      }
+      .bottom-bar {
+        text-align: center;
+        color: #55585f;
+        font-size: 13px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      @media (max-width: 992px) {
+        .nav-links {
+          position: fixed;
+          top: 80px;
+          left: -100%;
+          width: 100%;
+          height: calc(100vh - 80px);
+          background: #fff;
+          flex-direction: column;
+          align-items: center;
+          padding-top: 50px;
+        }
+        .nav-links.mobile-open {
+          left: 0;
+        }
+        .menu-toggle {
+          display: block;
+        }
+        .hero h1 {
+          font-size: 38px;
+        }
+        .cart-sidebar {
+          width: 100%;
+          left: -100%;
+        }
+        .chat-window {
+          width: calc(100vw - 40px);
+          right: 20px;
+          bottom: 95px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <div class="menu-toggle" onclick="toggleMenu()">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+        <a href="#" class="logo">AMI_<span>RMK13</span></a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#" class="active">کلکسیون هوشمند</a></li>
+          <li><a href="#shop">محصولات زنده</a></li>
+          <li><a href="#footer">ارتباط با ما</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="action-icon" onclick="toggleCart(true)">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="badge" id="cartCount">0</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <video class="hero-video-bg" autoplay loop muted playsinline>
+        <source
+          src="https://assets.mixkit.co/videos/preview/mixkit-fashion-woman-with-silver-glitter-makeup-40194-large.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div class="hero-content">
+        <h1 class="animate__animated animate__fadeInUp">
+          فروشگاه مجهز به <br />
+          دپارتمان تخصصی استایل
+        </h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">
+          از دکمه چت‌بات بپرسید: «کدام محصول مناسب افراد لاغر است؟» یا «چگونه
+          سایزم را بگیرم؟» تا شگفت‌زده شوید.
+        </p>
+        <a href="#shop" class="btn-premium"
+          >مشاهده ویترین زنده <i class="fa-solid fa-arrow-left"></i
+        ></a>
+      </div>
+    </section>
+
+    <section class="catalog-container" id="shop">
+      <div class="section-header">
+        <h2>ویترین محصولات مجلل</h2>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="tab-btn active" onclick="filterCategory('all', this)">
+          همه موارد
+        </button>
+        <button class="tab-btn" onclick="filterCategory('coats', this)">
+          پالتو و بارانی
+        </button>
+        <button class="tab-btn" onclick="filterCategory('suits', this)">
+          کت و شلوار
+        </button>
+        <button class="tab-btn" onclick="filterCategory('hoodies', this)">
+          هودی و بافت
+        </button>
+      </div>
+
+      <div class="products-grid" id="productsGrid"></div>
+    </section>
+
+    <div class="chatbot-container">
+      <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+          <img
+            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
+            alt="پشتیبان"
+          />
+          <div>
+            <strong>استایلیست هوشمند AMI</strong>
+            <span class="bot-status"
+              ><i class="fa-solid fa-circle" style="font-size: 8px"></i> آنلاین
+              و مشاور شما</span
+            >
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg bot">
+            سلام! من مشاور استایل و سایزگیری تخصصی شما هستم. می‌تونید از من
+            بپرسید کدوم ست‌ها موجودن، چه لباسی برای افراد چاق یا لاغر مناسبه، یا
+            چطور سایز دقیق بدنتون رو به دست بیارید! 🧥📐
+          </div>
+        </div>
+        <div class="chat-footer">
+          <input
+            type="text"
+            class="chat-input"
+            id="chatInput"
+            placeholder="سوال خود را درباره استایل، سایز یا محصولات بپرسید..."
+            onkeypress="handleChatKey(event)"
+          />
+          <button class="chat-send-btn" onclick="sendMessage()">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+      <div class="chatbot-toggle-btn" onclick="toggleChatWindow()">
+        <i class="fa-solid fa-comments" id="chatIcon"></i>
+      </div>
+    </div>
+
+    <div class="overlay-mask" id="overlay" onclick="toggleCart(false)"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-top">
+        <h3><i class="fa-solid fa-bag-shopping"></i> سبد خرید شما</h3>
+        <span class="close-sidebar" onclick="toggleCart(false)">&times;</span>
+      </div>
+      <div class="cart-items-wrapper" id="cartContainer"></div>
+      <div class="cart-bottom">
+        <div class="total-row">
+          <span>جمع کل خرید:</span>
+          <span id="cartTotal">۰ تومان</span>
+        </div>
+        <button
+          class="btn-premium"
+          style="width: 100%; justify-content: center"
+          onclick="submitOrder()"
+        >
+          ثبت نهایی سفارش
+        </button>
+      </div>
+    </div>
+
+    <footer id="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="footer-logo">AMI_<span>RMK13</span></div>
+          <p>پلتفرم نسل جدید طراحی فرانت‌اند تمام تعاملی.</p>
+        </div>
+      </div>
+      <div class="bottom-bar">طراحی مقتدرانه تمام عیار © ۲۰۲۶</div>
+    </footer>
+
+    <script>
+      const productsData = [
+        {
+          id: 1,
+          category: "coats",
+          title: "اورکت پشمی دیپلمات",
+          price: 4890000,
+          desc: "پارچه کشمیر اصل با آستر ضد باد زغال‌سنگی دکمه‌دار.",
+          img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80",
+          colors: ["#2c3e50", "#8e44ad"],
+          sizes: ["L", "XL"],
+        },
+        {
+          id: 2,
+          category: "hoodies",
+          title: "ست کژوال پاییزه نخی",
+          price: 2350000,
+          desc: "تن‌خور اورسایز بسیار راحت مناسب محیط‌های کژوال خیابانی.",
+          img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80",
+          colors: ["#f39c12", "#7f8c8d"],
+          sizes: ["Free"],
+        },
+        {
+          id: 3,
+          category: "suits",
+          title: "کت تک فرمال طوسی زغالی",
+          price: 6100000,
+          desc: "برش دست‌دوز آناتومیک برای قالب بدنی عالی و بی نقص.",
+          img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80",
+          colors: ["#34495e"],
+          sizes: ["50", "52"],
+        },
+      ];
+
+      let basket = [];
+
+      function displayProducts(products) {
+        const grid = document.getElementById("productsGrid");
+        grid.innerHTML = "";
+        products.forEach((p) => {
+          grid.innerHTML += `
+                    <div class="product-card">
+                        <div class="img-container">
+                            <span class="tag-badge">پرمیوم</span>
+                            <div class="wishlist-btn"><i class="fa-regular fa-heart"></i></div>
+                            <img src="${p.img}" class="product-img">
+                        </div>
+                        <div class="details-box">
+                            <span class="item-category">کالکشن طراحان</span>
+                            <h3 class="item-title">${p.title}</h3>
+                            <p class="item-desc">${p.desc}</p>
+                            <div class="selectors">
+                                <div class="color-dots" id="colors-${p.id}">
+                                    ${p.colors.map((c, i) => `<span class="dot ${i === 0 ? "selected" : ""}" style="background: ${c}" onclick="selectColor(this)"></span>`).join("")}
+                                </div>
+                                <div class="size-tags" id="sizes-${p.id}">
+                                    ${p.sizes.map((s, i) => `<span class="size-tag ${i === 0 ? "selected" : ""}" onclick="selectSize(this)">${s}</span>`).join("")}
+                                </div>
+                            </div>
+                            <div class="price-row">
+                                <span class="price-amount">${p.price.toLocaleString("fa-IR")} تومان</span>
+                                <button class="add-cart-action" onclick="buildProductForCart(${p.id})"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+        });
+      }
+
+      function filterCategory(category, btn) {
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        displayProducts(
+          category === "all"
+            ? productsData
+            : productsData.filter((p) => p.category === category),
+        );
+      }
+
+      function selectColor(el) {
+        el.parentElement
+          .querySelectorAll(".dot")
+          .forEach((d) => d.classList.remove("selected"));
+        el.classList.add("selected");
+      }
+      function selectSize(el) {
+        el.parentElement
+          .querySelectorAll(".size-tag")
+          .forEach((s) => s.classList.remove("selected"));
+        el.classList.add("selected");
+      }
+      function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("mobile-open");
+      }
+      function toggleCart(status) {
+        document
+          .getElementById("cartSidebar")
+          .classList.toggle("active", status);
+        document.getElementById("overlay").classList.toggle("active", status);
+      }
+
+      function buildProductForCart(productId) {
+        const product = productsData.find((p) => p.id === productId);
+        basket.push({
+          title: product.title,
+          price: product.price,
+          img: product.img,
+        });
+        renderBasket();
+        toggleCart(true);
+      }
+
+      function renderBasket() {
+        document.getElementById("cartCount").innerText = basket.length;
+        const container = document.getElementById("cartContainer");
+        if (basket.length === 0) {
+          container.innerHTML =
+            '<p style="text-align:center; color:var(--text-muted); margin-top:40px;">سبد خرید خالی است.</p>';
+          document.getElementById("cartTotal").innerText = "۰ تومان";
+          return;
+        }
+        let finalHtml = "",
+          sumPrice = 0;
+        basket.forEach((item, index) => {
+          sumPrice += item.price;
+          finalHtml += `<div class="cart-item-node"><img src="${item.img}" class="node-img"><div class="node-info"><div class="node-title">${item.title}</div><div class="node-price">${item.price.toLocaleString("fa-IR")}</div></div></div>`;
+        });
+        container.innerHTML = finalHtml;
+        document.getElementById("cartTotal").innerText =
+          sumPrice.toLocaleString("fa-IR") + " تومان";
+      }
+
+      function submitOrder() {
+        alert("سفارش ثبت شد!");
+        basket = [];
+        renderBasket();
+        toggleCart(false);
+      }
+
+      function toggleChatWindow() {
+        const win = document.getElementById("chatWindow");
+        const icon = document.getElementById("chatIcon");
+        win.classList.toggle("active");
+        icon.className = win.classList.contains("active")
+          ? "fa-solid fa-xmark"
+          : "fa-solid fa-comments";
+      }
+
+      function handleChatKey(e) {
+        if (e.key === "Enter") sendMessage();
+      }
+
+      function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const text = input.value.trim();
+        if (!text) return;
+
+        appendMessage(text, "user");
+        input.value = "";
+
+        setTimeout(() => {
+          const reply = generateBotResponse(text);
+          appendMessage(reply, "bot");
+        }, 500);
+      }
+
+      function appendMessage(text, sender) {
+        const box = document.getElementById("chatMessages");
+        box.innerHTML += `<div class="msg ${sender}">${text}</div>`;
+        box.scrollTop = box.scrollHeight;
+      }
+
+      // 🧠 سیستم فیلترینگ و موتور پاسخگویی جامع استایل و اندام شناسی
+      function generateBotResponse(input) {
+        const msg = input.toLowerCase();
+
+        // ۱. بررسی سوالات مربوط به موجودی ست‌ها
+        if (
+          msg.includes("ست") ||
+          msg.includes("کدوم ست") ||
+          msg.includes("چه ست هایی") ||
+          msg.includes("موجود")
+        ) {
+          return `در حال حاضر تمام ست‌های پرمیوم کالکشن ۲۰۲۶ ما در انبار موجود و آماده ارسال هستند:<br>
+                ۱. <b>اورکت پشمی دیپلمات</b> (سایز L تا XXL)<br>
+                ۲. <b>ست کژوال پاییزه نخی</b> (فری سایز اورسایز)<br>
+                ۳. <b>کت تک فرمال طوسی زغالی</b> (سایز ۴۸ تا ۵۲)<br>
+                می‌توانید با کلیک روی دکمه + هرکدام را به سبد خرید اضافه کنید.`;
+        }
+
+        // ۲. بررسی سوالات افراد لاغر و پیشنهاد استایل
+        if (
+          msg.includes("لاغر") ||
+          msg.includes("کم وزن") ||
+          msg.includes("استخوان بندی")
+        ) {
+          return `<b>پیشنهاد ویژه برای افراد لاغر اندام:</b><br>
+                بهترین گزینه موجود در سایت برای شما <b>«ست کژوال پاییزه نخی»</b> است! چون این لباس به صورت <b>اورسایز (قواره آزاد)</b> طراحی شده، خطوط لاغری بدن را پوشش می‌دهد و شما را پرتر و خوش‌استایل‌تر نشان می‌دهد.<br><br>
+                همچنین <b>«اورکت پشمی دیپلمات»</b> به دلیل ضخامت پارچه کشمیر و ایستایی محکم پارچه، ساختار چهارشانه‌تری به فرم بدنی شما می‌بخشد.`;
+        }
+
+        // ۳. بررسی سوالات افراد چاق یا پلاس سایز و پیشنهاد استایل
+        if (
+          msg.includes("چاق") ||
+          msg.includes("وزن بالا") ||
+          msg.includes("شکم") ||
+          msg.includes("درشت")
+        ) {
+          return `<b>پیشنهاد ویژه برای افراد درشت‌اندام و پر:</b><br>
+                بهترین انتخاب برای شما <b>«کت تک فرمال طوسی زغالی»</b> است. این کت دارای <b>برش آناتومیک دست‌دوز</b> است که کمر را جمع‌تر نشان داده و به دلیل رنگ تیره (طوسی زغالی) خطای دید ایجاد کرده و شما را کشیده‌تر و لاغرتر نشان می‌دهد.<br><br>
+                همچنین <b>«اورکت پشمی دیپلمات»</b> در سایز XXL برای شما عالی است، زیرا به دلیل آستر ضدباد و برش عمودی، فرم بدن را کاملاً یکدست و شکیل نگه می‌دارد.`;
+        }
+
+        // ۴. الگوریتم آموزش دقیق سایزگیری شخصی در خانه
+        if (
+          msg.includes("سایز") ||
+          msg.includes("سایزگیری") ||
+          msg.includes("چطوری سایز") ||
+          msg.includes("اندازه")
+        ) {
+          return `📐 <b>راهنمای سایزگیری دقیق در خانه (بدون نیاز به خیاط):</b><br>
+                یک متر خیاطی بردارید و مراحل زیر را انجام دهید:<br>
+                ۱. <b>دور سینه:</b> متر را روی پهن‌ترین قسمت سینه (زیر بغل) دور تا دور بگیرید.<br>
+                ۲. <b>دور کمر:</b> متر را دور باریک‌ترین بخش کمر (بالای ناف) بگیرید.<br>
+                ۳. <b>عرض شانه:</b> متر را از استخوان پشت شانه راست تا استخوان شانه چپ امتداد دهید.<br><br>
+                * نکته: اگر سایز شما بین دو اندازه بود، برای لباس‌های زمستانی همیشه سایز بزرگ‌تر را انتخاب کنید. اگر همچنان شک دارید، قد و وزنتان را اینجا بنویسید تا بگویم چه سایزی هستید!`;
+        }
+
+        // ۵. پشتیبانی عمومی اطلاعات تماس
+        if (
+          msg.includes("تماس") ||
+          msg.includes("تلفن") ||
+          msg.includes("آدرس") ||
+          msg.includes("شماره")
+        ) {
+          return `📞 <b>راه‌های ارتباطی با دپارتمان AMI_RMK13:</b><br>
+                تلفن پشتیبانی: ۰۲۱-۹۱۰۰۰۰۰۰<br>
+                آدرس شووروم مرکزی: جاده VIP مد، برج تجاری AMI`;
+        }
+
+        // ۶. پاسخ پیشفرض هوشمند برای هدایت مکالمه
+        return "من مشاور تخصصی لباس هستم. می‌توانید از من بپرسید: <br>- «کدام ست‌ها موجود است؟»<br>- «من لاغرم/چاقم چی پیشنهاد می‌کنی؟»<br>- «چگونه سایز دقیقم را بگیرم؟»";
+      }
+
+      displayProducts(productsData);
+    </script>
+  </body>
+</html>
